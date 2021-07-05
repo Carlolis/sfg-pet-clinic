@@ -1,13 +1,8 @@
 package fr.ilieff.sfgpetclinic.services;
 
-import java.util.Set;
-import fr.ilieff.sfgpetclinic.model.Pet;
+import fr.ilieff.sfgpetclinic.model.Vet;
 
-public interface VetService {
+public interface VetService extends CrudService<Vet, Long> {
 
-  Pet findById(Long id);
 
-  Pet save(Pet vet);
-
-  Set<Pet> findAll();
 }
