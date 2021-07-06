@@ -2,9 +2,9 @@ package fr.ilieff.sfgpetclinic.services.map;
 
 import java.util.Set;
 import fr.ilieff.sfgpetclinic.model.Pet;
-import fr.ilieff.sfgpetclinic.services.CrudService;
+import fr.ilieff.sfgpetclinic.services.PetService;
 
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
   @Override
   public Pet save(Pet object) {
