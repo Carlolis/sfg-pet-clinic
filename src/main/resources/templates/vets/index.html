@@ -12,6 +12,27 @@
 
 <body>
   <h1 th:text="'List of Vets'">List of Vets...</h1>
+
+
+
+  <table>
+    <caption>List of Vets</caption>
+    <thread>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+      </tr>
+    </thread>
+    <tbody>
+      <tr th:each="vet : ${vets}">
+        <td th:text="${vet.id}">1</td>
+        <td th:text="${vet.firstName}">John</td>
+        <td th:text="${vet.lastName}">Buck</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
 </body>
 
 </html>
