@@ -12,6 +12,24 @@
 
 <body>
   <h1 th:text="'List of Owners'">List of Owners...</h1>
+
+  <table>
+    <caption>List of Owners</caption>
+    <thread>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+      </tr>
+    </thread>
+    <tbody>
+      <tr th:each="owner : ${owners}">
+        <td th:text="${owner.id}">1</td>
+        <td th:text="${owner.firstName}">John</td>
+        <td th:text="${owner.lastName}">Buck</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 
 </html>

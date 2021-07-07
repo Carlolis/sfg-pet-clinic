@@ -6,8 +6,6 @@ import fr.ilieff.sfgpetclinic.model.Owner;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
 import fr.ilieff.sfgpetclinic.services.VetService;
-import fr.ilieff.sfgpetclinic.services.map.OwnerServiceMap;
-import fr.ilieff.sfgpetclinic.services.map.VetServiceMap;
 
 
 
@@ -32,23 +30,24 @@ public class DataLoader implements CommandLineRunner {
 
     var owner1 = new Owner();
     owner1.setId(1L);
-    owner1.setLastName("Michael");
+    owner1.setLastName("Robert");
     owner1.setFirstName("Weston");
     ownerService.save(owner1);
 
     var owner2 = new Owner();
-    owner1.setId(2L);
-    owner1.setLastName("Fiona");
-    owner1.setFirstName("Glenanne");
+    owner2.setId(2L);
+    owner2.setLastName("Fiona");
+    owner2.setFirstName("Glenanne");
     ownerService.save(owner2);
 
 
     var owner3 = new Owner();
-    owner1.setId(3L);
-    owner1.setLastName("Bob");
-    owner1.setFirstName("Kennedy");
+    owner3.setId(3L);
+    owner3.setLastName("Bob");
+    owner3.setFirstName("Kennedy");
     ownerService.save(owner3);
 
+    System.out.println(ownerService.findAll());
     System.out.println("Loaded Owners...");
 
 
