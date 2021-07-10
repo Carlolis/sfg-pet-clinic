@@ -6,7 +6,7 @@ import fr.ilieff.sfgpetclinic.model.PetType;
 import fr.ilieff.sfgpetclinic.services.PetTypeService;
 
 @Service
-public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
+public class PetTypeServiceMap extends AbstractMapService<PetType, Long> implements PetTypeService {
 
   @Override
   public PetType findById(Long id) {

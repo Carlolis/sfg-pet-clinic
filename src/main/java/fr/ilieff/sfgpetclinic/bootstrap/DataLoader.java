@@ -3,8 +3,10 @@ package fr.ilieff.sfgpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import fr.ilieff.sfgpetclinic.model.Owner;
+import fr.ilieff.sfgpetclinic.model.PetType;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
+import fr.ilieff.sfgpetclinic.services.PetTypeService;
 import fr.ilieff.sfgpetclinic.services.VetService;
 
 
@@ -16,17 +18,34 @@ public class DataLoader implements CommandLineRunner {
 
   private final VetService vetService;
 
+  private final PetTypeService petTypeService;
 
 
-  public DataLoader(OwnerService ownerService, VetService vetService) {
+
+  public DataLoader(OwnerService ownerService, VetService vetService,
+      PetTypeService petTypeService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
+    this.petTypeService = petTypeService;
   }
 
 
 
   @Override
   public void run(String... args) throws Exception {
+
+    var dog = new PetType();
+    dog.setName("Dog");
+
+    petTypeService.save(dog);
+
+    var cat = new PetType();
+    dog.setName("Cat");
+
+    petTypeService.save(cat);
+
+    System.out.println("Loaded PetType...");
+
 
     var owner1 = new Owner();
 
@@ -47,7 +66,7 @@ public class DataLoader implements CommandLineRunner {
     owner3.setFirstName("Kennedy");
     ownerService.save(owner3);
 
-    System.out.println(ownerService.findAll());
+    ownerService.findAll().forEach(System.out::println);
     System.out.println("Loaded Owners...");
 
 
@@ -65,6 +84,8 @@ public class DataLoader implements CommandLineRunner {
     vetService.save(vet2);
 
     System.out.println("Loaded Vets...");
+
+
   }
 
 }
