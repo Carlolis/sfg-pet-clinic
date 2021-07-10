@@ -1,8 +1,11 @@
 package fr.ilieff.sfgpetclinic.bootstrap;
 
+import java.time.LocalDate;
+import java.util.Set;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import fr.ilieff.sfgpetclinic.model.Owner;
+import fr.ilieff.sfgpetclinic.model.Pet;
 import fr.ilieff.sfgpetclinic.model.PetType;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
@@ -37,12 +40,12 @@ public class DataLoader implements CommandLineRunner {
     var dog = new PetType();
     dog.setName("Dog");
 
-    petTypeService.save(dog);
+    PetType dogSaved = petTypeService.save(dog);
 
     var cat = new PetType();
     dog.setName("Cat");
 
-    petTypeService.save(cat);
+    PetType catSaved = petTypeService.save(cat);
 
     System.out.println("Loaded PetType...");
 
@@ -51,20 +54,49 @@ public class DataLoader implements CommandLineRunner {
 
     owner1.setLastName("Robert");
     owner1.setFirstName("Weston");
+    owner1.setAdresse("123 Brickerel");
+    owner1.setCity("Paris");
     ownerService.save(owner1);
+    var robertPet = new Pet();
+    robertPet.setPetType(dogSaved);
+    robertPet.setOwner(owner1);
+    robertPet.setName("Rococo");
+    robertPet.setBirthDate(LocalDate.now());
+    owner1.getPets().add(robertPet);
 
     var owner2 = new Owner();
 
     owner2.setLastName("Fiona");
     owner2.setFirstName("Glenanne");
+    owner2.setAdresse("123 place du Capitole");
+    owner2.setCity("Toulouse");
     ownerService.save(owner2);
+    var fionaPet = new Pet();
+    fionaPet.setPetType(catSaved);
+    fionaPet.setOwner(owner2);
+    fionaPet.setName("Ratenplin");
+    fionaPet.setBirthDate(LocalDate.now());
+
+
+    owner2.setPets(Set.of(fionaPet));
+    // owner2.getPets().add(fionaPet);
 
 
     var owner3 = new Owner();
 
     owner3.setLastName("Bob");
     owner3.setFirstName("Kennedy");
+    owner3.setAdresse("12 rue Gégé");
+    owner3.setCity("Carcassonne");
     ownerService.save(owner3);
+
+    var bobPet = new Pet();
+    bobPet.setPetType(dogSaved);
+    bobPet.setOwner(owner3);
+    bobPet.setName("Coca");
+    bobPet.setBirthDate(LocalDate.now());
+
+    owner3.getPets().add(bobPet);
 
     ownerService.findAll().forEach(System.out::println);
     System.out.println("Loaded Owners...");
