@@ -1,12 +1,13 @@
 package fr.ilieff.sfgpetclinic.services.map;
 
 import java.util.Set;
+import org.springframework.stereotype.Service;
 import fr.ilieff.sfgpetclinic.model.Speciality;
+import fr.ilieff.sfgpetclinic.services.SpecialityService;
 
-import fr.ilieff.sfgpetclinic.services.SpecialitiesService;
-
-public class SpecialitiesServiceMap extends AbstractMapService<Speciality, Long>
-    implements SpecialitiesService {
+@Service
+public class SpecialityServiceMap extends AbstractMapService<Speciality, Long>
+    implements SpecialityService {
 
   @Override
   public Speciality save(Speciality speciality) {
