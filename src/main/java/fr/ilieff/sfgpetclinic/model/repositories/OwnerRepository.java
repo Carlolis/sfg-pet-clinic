@@ -6,4 +6,5 @@ import fr.ilieff.sfgpetclinic.model.Owner;
 
 @Repository
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
+  Owner findByLastName(String lastName);
 }
