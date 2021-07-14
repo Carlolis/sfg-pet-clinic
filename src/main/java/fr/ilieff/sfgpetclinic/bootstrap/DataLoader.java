@@ -10,6 +10,7 @@ import fr.ilieff.sfgpetclinic.model.Specialty;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.model.Visit;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
+import fr.ilieff.sfgpetclinic.services.PetService;
 import fr.ilieff.sfgpetclinic.services.PetTypeService;
 import fr.ilieff.sfgpetclinic.services.SpecialtyService;
 import fr.ilieff.sfgpetclinic.services.VetService;
@@ -24,6 +25,8 @@ public class DataLoader implements CommandLineRunner {
   private final OwnerService ownerService;
 
   private final VetService vetService;
+
+  private final PetService petService;
 
   private final PetTypeService petTypeService;
 
@@ -89,7 +92,7 @@ public class DataLoader implements CommandLineRunner {
     robertPet.setOwner(owner1);
     robertPet.setName("Rococo");
     robertPet.setBirthDate(LocalDate.now());
-
+    petService.save(robertPet);
     owner1.getPets().add(robertPet);
 
     var owner2 = new Owner();
@@ -108,15 +111,18 @@ public class DataLoader implements CommandLineRunner {
     fionaPet.setName("Ratenplin");
     fionaPet.setBirthDate(LocalDate.now());
 
+    petService.save(fionaPet);
+
     var catVisit = new Visit();
     catVisit.setPet(fionaPet);
     catVisit.setDate(LocalDate.now());
     catVisit.setDescription("Visite du chat pour problémes.");
 
-    visitService.save(catVisit);
+
 
     owner2.getPets().add(fionaPet);
 
+    visitService.save(catVisit);
 
     var owner3 = new Owner();
 
@@ -148,7 +154,7 @@ public class DataLoader implements CommandLineRunner {
 
     var vet2 = new Vet();
 
-    vet2.setLastName("Michael");
+    vet2.setLastName("Marcel");
     vet2.setFirstName("Jackson");
     vet2.getSpecialities().add(dentistry);
     vetService.save(vet2);
