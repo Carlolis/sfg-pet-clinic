@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Speciality extends BaseEntity {
+public class Specialty extends BaseEntity {
 
   @ManyToMany
   private Set<Vet> specialities = new HashSet<>();

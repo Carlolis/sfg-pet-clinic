@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import fr.ilieff.sfgpetclinic.model.Owner;
 import fr.ilieff.sfgpetclinic.model.Pet;
 import fr.ilieff.sfgpetclinic.model.PetType;
-import fr.ilieff.sfgpetclinic.model.Speciality;
+import fr.ilieff.sfgpetclinic.model.Specialty;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
 import fr.ilieff.sfgpetclinic.services.PetTypeService;
-import fr.ilieff.sfgpetclinic.services.SpecialityService;
+import fr.ilieff.sfgpetclinic.services.SpecialtyService;
 import fr.ilieff.sfgpetclinic.services.VetService;
 import lombok.AllArgsConstructor;
 
@@ -26,7 +26,7 @@ public class DataLoader implements CommandLineRunner {
 
   private final PetTypeService petTypeService;
 
-  private final SpecialityService specialityService;
+  private final SpecialtyService specialityService;
 
 
 
@@ -44,15 +44,15 @@ public class DataLoader implements CommandLineRunner {
   private void loadDatat() {
 
 
-    var radiology = new Speciality();
+    var radiology = new Specialty();
     radiology.setDescription("Radiology");
     specialityService.save(radiology);
 
-    var surgery = new Speciality();
+    var surgery = new Specialty();
     surgery.setDescription("Surgery");
     specialityService.save(surgery);
 
-    var dentistry = new Speciality();
+    var dentistry = new Specialty();
     dentistry.setDescription("Dentistry");
     specialityService.save(dentistry);
 
