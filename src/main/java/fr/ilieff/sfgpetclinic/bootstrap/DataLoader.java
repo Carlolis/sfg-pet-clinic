@@ -1,7 +1,6 @@
 package fr.ilieff.sfgpetclinic.bootstrap;
 
 import java.time.LocalDate;
-import java.util.Set;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import fr.ilieff.sfgpetclinic.model.Owner;
@@ -9,10 +8,12 @@ import fr.ilieff.sfgpetclinic.model.Pet;
 import fr.ilieff.sfgpetclinic.model.PetType;
 import fr.ilieff.sfgpetclinic.model.Specialty;
 import fr.ilieff.sfgpetclinic.model.Vet;
+import fr.ilieff.sfgpetclinic.model.Visit;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
 import fr.ilieff.sfgpetclinic.services.PetTypeService;
 import fr.ilieff.sfgpetclinic.services.SpecialtyService;
 import fr.ilieff.sfgpetclinic.services.VetService;
+import fr.ilieff.sfgpetclinic.services.VisitService;
 import lombok.AllArgsConstructor;
 
 
@@ -27,6 +28,8 @@ public class DataLoader implements CommandLineRunner {
   private final PetTypeService petTypeService;
 
   private final SpecialtyService specialityService;
+
+  private final VisitService visitService;
 
 
 
@@ -97,15 +100,22 @@ public class DataLoader implements CommandLineRunner {
     owner2.setCity("Toulouse");
     ownerService.save(owner2);
 
+
+
     var fionaPet = new Pet();
     fionaPet.setPetType(cat);
     fionaPet.setOwner(owner2);
     fionaPet.setName("Ratenplin");
     fionaPet.setBirthDate(LocalDate.now());
 
+    var catVisit = new Visit();
+    catVisit.setPet(fionaPet);
+    catVisit.setDate(LocalDate.now());
+    catVisit.setDescription("Visite du chat pour problémes.");
 
-    owner2.setPets(Set.of(fionaPet));
-    // owner2.getPets().add(fionaPet);
+    visitService.save(catVisit);
+
+    owner2.getPets().add(fionaPet);
 
 
     var owner3 = new Owner();
