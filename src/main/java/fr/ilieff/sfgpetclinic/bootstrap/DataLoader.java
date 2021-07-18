@@ -83,9 +83,10 @@ public class DataLoader implements CommandLineRunner {
 
     owner1.setLastName("Robert");
     owner1.setFirstName("Weston");
-    owner1.setAdresse("123 Brickerel");
+    owner1.setAddress("123 Brickerel");
     owner1.setCity("Paris");
     ownerService.save(owner1);
+
 
     var robertPet = new Pet();
     robertPet.setPetType(dog);
@@ -99,7 +100,7 @@ public class DataLoader implements CommandLineRunner {
 
     owner2.setLastName("Fiona");
     owner2.setFirstName("Glenanne");
-    owner2.setAdresse("123 place du Capitole");
+    owner2.setAddress("123 place du Capitole");
     owner2.setCity("Toulouse");
     ownerService.save(owner2);
 
@@ -125,11 +126,14 @@ public class DataLoader implements CommandLineRunner {
     visitService.save(catVisit);
 
     var owner3 = new Owner();
-
+    // Owner.builder().lastName("Bob").firstName("Kennedy").address("12 rue Gégé")
+    // .city("Carcassonne").build();
     owner3.setLastName("Bob");
     owner3.setFirstName("Kennedy");
-    owner3.setAdresse("12 rue Gégé");
+    owner3.setAddress("12 rue Gégé");
     owner3.setCity("Carcassonne");
+
+
     ownerService.save(owner3);
 
     var bobPet = new Pet();

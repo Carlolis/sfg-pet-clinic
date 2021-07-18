@@ -2,8 +2,14 @@ package fr.ilieff.sfgpetclinic.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
+
 
 @RequestMapping("/owners")
 @Controller
@@ -15,7 +21,12 @@ public class OwnerController {
     this.ownerService = ownerService;
   }
 
-  @RequestMapping({"/", "/index", "/index.html"})
+  @InitBinder
+  public void setAllowedFields(WebDataBinder dataBinder) {
+    dataBinder.setDisallowedFields("id");
+  }
+
+  @RequestMapping({"", "/index", "/index.html"})
   public String listOwners(Model model) {
 
     model.addAttribute("owners", ownerService.findAll());
@@ -27,4 +38,12 @@ public class OwnerController {
   public String findOwners() {
     return "error";
   }
+
+  @GetMapping("/{ownerId}")
+  public ModelAndView shoOwner(@PathVariable("ownerId") Long ownerId) {
+    var mav = new ModelAndView("owners/ownerDetails");
+    mav.addObject(this.ownerService.findById(ownerId));
+    return mav;
+  }
+
 }
