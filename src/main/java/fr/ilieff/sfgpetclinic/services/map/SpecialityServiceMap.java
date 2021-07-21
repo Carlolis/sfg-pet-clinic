@@ -3,33 +3,33 @@ package fr.ilieff.sfgpetclinic.services.map;
 import java.util.Set;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import fr.ilieff.sfgpetclinic.model.Specialty;
+import fr.ilieff.sfgpetclinic.model.Speciality;
 import fr.ilieff.sfgpetclinic.services.SpecialtyService;
 
 @Service
 @Profile({"default", "map"})
-public class SpecialityServiceMap extends AbstractMapService<Specialty, Long>
+public class SpecialityServiceMap extends AbstractMapService<Speciality, Long>
     implements SpecialtyService {
 
   @Override
-  public Specialty save(Specialty speciality) {
+  public Speciality save(Speciality speciality) {
     return super.save(speciality);
   }
 
   @Override
-  public Set<Specialty> findAll() {
+  public Set<Speciality> findAll() {
     return super.findAll();
   }
 
   @Override
-  public Specialty findById(Long id) {
+  public Speciality findById(Long id) {
     return super.findById(id);
   }
 
 
 
   @Override
-  public void delete(Specialty speciality) {
+  public void delete(Speciality speciality) {
     super.delete(speciality);
   }
 

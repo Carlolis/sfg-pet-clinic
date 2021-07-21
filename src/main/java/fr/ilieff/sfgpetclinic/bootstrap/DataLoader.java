@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import fr.ilieff.sfgpetclinic.model.Owner;
 import fr.ilieff.sfgpetclinic.model.Pet;
 import fr.ilieff.sfgpetclinic.model.PetType;
-import fr.ilieff.sfgpetclinic.model.Specialty;
+import fr.ilieff.sfgpetclinic.model.Speciality;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.model.Visit;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
@@ -50,15 +50,15 @@ public class DataLoader implements CommandLineRunner {
   private void loadDatat() {
 
 
-    var radiology = new Specialty();
+    var radiology = new Speciality();
     radiology.setDescription("Radiology");
     specialityService.save(radiology);
 
-    var surgery = new Specialty();
+    var surgery = new Speciality();
     surgery.setDescription("Surgery");
     specialityService.save(surgery);
 
-    var dentistry = new Specialty();
+    var dentistry = new Speciality();
     dentistry.setDescription("Dentistry");
     specialityService.save(dentistry);
 
@@ -69,10 +69,10 @@ public class DataLoader implements CommandLineRunner {
     var dog = new PetType();
     dog.setName("Dog");
 
-    petTypeService.save(dog);
+    PetType savedDog = petTypeService.save(dog);
 
     var cat = new PetType();
-    dog.setName("Cat");
+    cat.setName("Cat");
 
     petTypeService.save(cat);
 
@@ -89,7 +89,7 @@ public class DataLoader implements CommandLineRunner {
 
 
     var robertPet = new Pet();
-    robertPet.setPetType(dog);
+    robertPet.setPetType(savedDog);
     robertPet.setOwner(owner1);
     robertPet.setName("Rococo");
     robertPet.setBirthDate(LocalDate.now());

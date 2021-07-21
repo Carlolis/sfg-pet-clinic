@@ -3,7 +3,7 @@ package fr.ilieff.sfgpetclinic.services.map;
 import java.util.Set;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import fr.ilieff.sfgpetclinic.model.Specialty;
+import fr.ilieff.sfgpetclinic.model.Speciality;
 import fr.ilieff.sfgpetclinic.model.Vet;
 import fr.ilieff.sfgpetclinic.services.SpecialtyService;
 import fr.ilieff.sfgpetclinic.services.VetService;
@@ -21,7 +21,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
     if (object.getSpecialities().isEmpty()) {
       object.getSpecialities().forEach(speciality -> {
         if (speciality.getId() == null) {
-          Specialty savedSpeciality = specialityService.save(speciality);
+          Speciality savedSpeciality = specialityService.save(speciality);
           speciality.setId(savedSpeciality.getId());
         }
 

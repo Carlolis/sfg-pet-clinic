@@ -1,7 +1,7 @@
 package fr.ilieff.sfgpetclinic.services;
 
-import fr.ilieff.sfgpetclinic.model.Specialty;
+import fr.ilieff.sfgpetclinic.model.Speciality;
 
-public interface SpecialtyService extends CrudService<Specialty, Long> {
+public interface SpecialtyService extends CrudService<Speciality, Long> {
 
 }
