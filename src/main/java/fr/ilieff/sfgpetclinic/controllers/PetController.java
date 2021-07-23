@@ -19,7 +19,6 @@ import fr.ilieff.sfgpetclinic.model.PetType;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
 import fr.ilieff.sfgpetclinic.services.PetService;
 import fr.ilieff.sfgpetclinic.services.PetTypeService;
-import lombok.AllArgsConstructor;
 
 
 @Controller

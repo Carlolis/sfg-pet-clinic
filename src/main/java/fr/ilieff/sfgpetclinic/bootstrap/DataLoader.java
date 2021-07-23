@@ -119,20 +119,12 @@ public class DataLoader implements CommandLineRunner {
     catVisit.setDate(LocalDate.now());
     catVisit.setDescription("Visite du chat pour problémes.");
 
-
-
     owner2.getPets().add(fionaPet);
 
     visitService.save(catVisit);
 
-    var owner3 = new Owner();
-    // Owner.builder().lastName("Bob").firstName("Kennedy").address("12 rue Gégé")
-    // .city("Carcassonne").build();
-    owner3.setLastName("Bob");
-    owner3.setFirstName("Kennedy");
-    owner3.setAddress("12 rue Gégé");
-    owner3.setCity("Carcassonne");
-
+    var owner3 = Owner.builder().lastName("Bob").firstName("Kennedy").address("12 rue Gégé")
+        .city("Carcassonne").build();
 
     ownerService.save(owner3);
 
@@ -144,6 +136,7 @@ public class DataLoader implements CommandLineRunner {
 
     owner3.getPets().add(bobPet);
 
+    petService.save(bobPet);
 
     System.out.println("Loaded Owners...");
 
