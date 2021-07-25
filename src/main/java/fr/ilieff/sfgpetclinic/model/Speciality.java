@@ -11,9 +11,5 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Speciality extends BaseEntity {
-
-  @ManyToMany
-  private Set<Vet> specialities = new HashSet<>();
-
   private String description;
 }
