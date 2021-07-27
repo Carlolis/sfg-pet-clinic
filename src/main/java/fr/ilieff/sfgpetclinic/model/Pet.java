@@ -25,7 +25,6 @@ import lombok.Setter;
 public class Pet extends BaseEntity {
 
 
-
   @Builder
   public Pet(Long id, String name, LocalDate birthDate, PetType petType, Owner owner,
       Set<Visit> visits) {

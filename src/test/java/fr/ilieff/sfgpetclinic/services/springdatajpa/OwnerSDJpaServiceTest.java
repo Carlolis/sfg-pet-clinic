@@ -61,12 +61,10 @@ class OwnerSDJpaServiceTest {
   @Test
   void testFindAll() {
     List<Owner> returnOwnersSet = new ArrayList<>();
-
     returnOwnersSet.add(Owner.builder().id(1L).build());
     returnOwnersSet.add(Owner.builder().id(2L).build());
 
     when(ownerRepository.findAll()).thenReturn(returnOwnersSet);
-
     Set<Owner> owners = service.findAll();
 
     assertNotNull(owners);
@@ -76,8 +74,8 @@ class OwnerSDJpaServiceTest {
 
   @Test
   void testFindById() {
+    Owner returnOwner = new Owner();
     when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(returnOwner));
-
     Owner owner = service.findById(1L);
 
     assertNotNull(owner);
@@ -86,7 +84,6 @@ class OwnerSDJpaServiceTest {
   @Test
   void testFindByIdNotFound() {
     when(ownerRepository.findById(anyLong())).thenReturn(Optional.empty());
-
     Owner owner = service.findById(1L);
 
     assertNull(owner);

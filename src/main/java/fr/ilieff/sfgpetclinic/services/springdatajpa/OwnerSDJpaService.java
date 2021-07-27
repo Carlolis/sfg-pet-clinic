@@ -1,9 +1,9 @@
 package fr.ilieff.sfgpetclinic.services.springdatajpa;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import fr.ilieff.sfgpetclinic.model.Owner;
@@ -21,25 +21,24 @@ public class OwnerSDJpaService implements OwnerService {
 
   @Override
   public Set<Owner> findAll() {
-    Set<Owner> owners = new HashSet<>();
+    return ownerRepository.findAll().stream().collect(Collectors.toSet());
+  }
 
-    ownerRepository.findAll().forEach(owners::add);
+  @Override
+  public Set<Owner> findAllByLastNameLike(String lastName) {
+    Set<Owner> owners = new HashSet<>();
+    ownerRepository.findAllByLastNameLike("%" + lastName + "%").forEach(owners::add);
     return owners;
   }
 
   @Override
   public Owner findById(Long id) {
     Optional<Owner> optionalOwner = ownerRepository.findById(id);
-
-    // if (optionalOwner.isPresent()) {
-    // return optionalOwner.get();
-    // }
     return optionalOwner.orElse(null);
   }
 
   @Override
   public Owner save(Owner object) {
-
     return ownerRepository.save(object);
   }
 
@@ -60,9 +59,4 @@ public class OwnerSDJpaService implements OwnerService {
 
     return ownerRepository.findByLastName(lastName);
   }
-
-  public List<Owner> findAllByLastNameLike(String lastName) {
-    return ownerRepository.findAllByLastNameLike(lastName);
-  }
-
 }

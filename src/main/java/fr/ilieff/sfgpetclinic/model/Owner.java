@@ -2,10 +2,12 @@ package fr.ilieff.sfgpetclinic.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +20,15 @@ import lombok.Setter;
 @Table(name = "owners")
 public class Owner extends Person {
 
+  @Basic(optional = false)
   private String city;
+
+  @NotNull
   private String address;
+
+  @NotNull
   private String telephone;
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
   private Set<Pet> pets = new HashSet<>();
 
@@ -66,18 +74,22 @@ public class Owner extends Person {
 
 
   /**
-   * Return the PEt with the given name, or null if none found for this Owner.
+   * Return the Pet with the given name, or null if none found for this Owner.
    * 
    * @param name to test
    * @param ignoreNew
    * @return
    */
   public Pet getPet(String name, boolean ignoreNew) {
+
     name = name.toLowerCase();
-    for (Pet pet : pets) {
+
+    for (Pet pet : this.pets) {
+
       if (!ignoreNew || !pet.isNew()) {
-        String compName = pet.getName();
-        compName = compName.toLowerCase();
+
+        String compName = pet.getName().toLowerCase();
+
         if (compName.equals(name)) {
           return pet;
         }

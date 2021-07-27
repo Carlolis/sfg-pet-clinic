@@ -1,11 +1,9 @@
 package fr.ilieff.sfgpetclinic.services.map;
 
-import java.util.List;
 import java.util.Set;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import fr.ilieff.sfgpetclinic.model.Owner;
-import fr.ilieff.sfgpetclinic.model.Pet;
 import fr.ilieff.sfgpetclinic.services.OwnerService;
 import fr.ilieff.sfgpetclinic.services.PetService;
 import fr.ilieff.sfgpetclinic.services.PetTypeService;
@@ -32,7 +30,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
             throw new RuntimeException("Pet Type is required");
           }
           if (pet.getId() == null) {
-            Pet savedPet = petService.save(pet);
+            var savedPet = petService.save(pet);
             pet.setId(savedPet.getId());
           }
         });
@@ -74,7 +72,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
   }
 
   @Override
-  public List<Owner> findAllByLastNameLike(String lastName) {
+  public Set<Owner> findAllByLastNameLike(String lastName) {
     // TODO Auto-generated method stub
     return null;
   }
